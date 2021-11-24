@@ -7,43 +7,31 @@ import { IntroduccionComponent } from './introduccion/introduccion.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule, Routes} from '@angular/router';
-import { Seccion1pregunta1Component } from './seccion1pregunta1/seccion1pregunta1.component';
-import { Seccion1pregunta2Component } from './seccion1pregunta2/seccion1pregunta2.component';
-import { Seccion1pregunta3Component } from './seccion1pregunta3/seccion1pregunta3.component';
-import { Prediccion1seccion1Component } from './prediccion1seccion1/prediccion1seccion1.component';
-import { Seccion2pregunta1Component } from './seccion2pregunta1/seccion2pregunta1.component';
-import { Prediccion1seccion2Component } from './prediccion1seccion2/prediccion1seccion2.component';
-import { Seccion2pregunta2Component } from './seccion2pregunta2/seccion2pregunta2.component';
-import { Seccion2pregunta3Component } from './seccion2pregunta3/seccion2pregunta3.component';
-import { Prediccion2seccion2Component } from './prediccion2seccion2/prediccion2seccion2.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LoginGuard } from './login.guard';
 import { NoLoginGuard } from './no-login.guard';
 import { HttpModule } from '@angular/http';
-import { AdminService } from './service/AdminService';
-import { EvaluacionComponent } from './evaluacion/evaluacion.component';
-import { Seccion2pregunta2pComponent } from './seccion2pregunta2p/seccion2pregunta2p.component';
-import { Seccion2pregunta3pComponent } from './seccion2pregunta3p/seccion2pregunta3p.component';
-import { Prediccion1seccion2pComponent } from './prediccion1seccion2p/prediccion1seccion2p.component';
-import { Seccion2pregunta1pComponent } from './seccion2pregunta1p/seccion2pregunta1p.component';
-import { Seccion1pregunta1pComponent } from './seccion1pregunta1p/seccion1pregunta1p.component';
-import { Seccion1pregunta2pComponent } from './seccion1pregunta2p/seccion1pregunta2p.component';
-import { Seccion1pregunta3pComponent } from './seccion1pregunta3p/seccion1pregunta3p.component';
-import { Prediccion1seccion1pComponent } from './prediccion1seccion1p/prediccion1seccion1p.component';
-import { PsicologoComponent } from './psicologo/psicologo.component';
+import { HttpClientModule } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module';
-import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PaginaPsicologoComponent } from './pagina-psicologo/pagina-psicologo.component';
+import { Service } from './serviceSpring/service'
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-import { HistorialDepresionComponent } from './historial-depresion/historial-depresion.component';
-import { PreguntasComponent } from './preguntas/preguntas.component';
-import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
+
 import { registerLocaleData} from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import {  AngularMultiSelectModule  }  from  'angular2-multiselect-dropdown' ;
+import {  AngularMultiSelectModule  }  from  'angular2-multiselect-dropdown';
+import { CrearClienteComponent } from './crear-cliente/crear-cliente.component';
+import { CrearPreguntaComponent } from './crear-pregunta/crear-pregunta.component';
+import { EncuestaComponent } from './encuesta/encuesta.component';
+import { HistorialComponent } from './historial/historial.component';
+import { DetalleHistorialComponent } from './detalle-historial/detalle-historial.component' ;
+import { PaginadorComponent } from './paginador/paginador.component';
+import { EstadisticaPacientesComponent } from './estadistica-pacientes/estadistica-pacientes.component';
+import { EstadisticaHistoriasComponent } from './estadistica-historias/estadistica-historias.component';
 
 
 
@@ -51,39 +39,16 @@ registerLocaleData(localeES,'es');
 const routes: Routes=  [
 {path:'',component: LoginComponent, canActivate:[NoLoginGuard]},
 {path:'login',component: LoginComponent, canActivate:[NoLoginGuard]},
-{path:'psicologo',component: PsicologoComponent, canActivate:[LoginGuard],children:[
-
-  {path:'usuario/:nombre',component: UsuariosComponent, canActivate:[LoginGuard]},
-]},
-{path:'registrarUsuario',component:RegistrarUsuarioComponent, canActivate: [LoginGuard]},
+{path:'',component: LoginComponent, canActivate:[LoginGuard]},
 {path:'paginaPsicologo',component:PaginaPsicologoComponent, canActivate: [LoginGuard]},
-{path:'seccion1pregunta1',component:Seccion1pregunta1Component, canActivate: [LoginGuard]},
 {path:'introduccion',component:IntroduccionComponent, canActivate: [LoginGuard]},
-{path:'seccion1pregunta2',component:Seccion1pregunta2Component, canActivate: [LoginGuard]},
-{path:'seccion1pregunta3',component:Seccion1pregunta3Component, canActivate: [LoginGuard]},
-{path:'prediccion1seccion1',component:Prediccion1seccion1Component, canActivate: [LoginGuard]},
-{path:'seccion2pregunta1',component:Seccion2pregunta1Component, canActivate: [LoginGuard]},
-{path:'prediccion1seccion2',component:Prediccion1seccion2Component, canActivate: [LoginGuard]},
-{path:'seccion2pregunta2',component:Seccion2pregunta2Component, canActivate: [LoginGuard]},
-{path:'seccion2pregunta3',component:Seccion2pregunta3Component, canActivate: [LoginGuard]},
-{path:'prediccion2seccion2',component:Prediccion2seccion2Component, canActivate: [LoginGuard]},
-{path:'evaluacion',component:EvaluacionComponent, canActivate: [LoginGuard]},
-{path:'seccion2pregunta1p',component:Seccion2pregunta1pComponent, canActivate: [LoginGuard]},
-{path:'seccion2pregunta2p',component:Seccion2pregunta2pComponent, canActivate: [LoginGuard]},
-{path:'seccion2pregunta3p',component:Seccion2pregunta3pComponent, canActivate: [LoginGuard]},
-{path:'prediccion1seccion2p',component:Prediccion1seccion2pComponent, canActivate: [LoginGuard]},
-{path:'seccion1pregunta1p',component:Seccion1pregunta1pComponent, canActivate: [LoginGuard]},
-{path:'seccion1pregunta2p',component:Seccion1pregunta2pComponent, canActivate: [LoginGuard]},
-{path:'seccion1pregunta3p',component:Seccion1pregunta3pComponent, canActivate: [LoginGuard]},
-{path:'prediccion1seccion1p',component:Prediccion1seccion1pComponent, canActivate: [LoginGuard]},
-{path:'psicologo',component:PsicologoComponent, canActivate: [LoginGuard]},
-{path:'historialDepresion/:id',component:HistorialDepresionComponent, canActivate: [LoginGuard]},
-{path:'preguntasD',component:PreguntasComponent, canActivate: [LoginGuard]},
-
-
-
-
-
+{path:'crearCliente',component:CrearClienteComponent, canActivate: [LoginGuard]},
+{path:'crearCliente/:id',component:CrearClienteComponent, canActivate: [LoginGuard]},
+{path:'crearPregunta',component:CrearPreguntaComponent, canActivate: [LoginGuard]},
+{path:'encuesta',component:EncuestaComponent, canActivate: [LoginGuard]},
+{path:'historial/:id',component:HistorialComponent, canActivate: [LoginGuard]},
+{path:'historial/:id/:page',component:HistorialComponent, canActivate: [LoginGuard]},
+{path:'detalleHist/:id',component:DetalleHistorialComponent, canActivate: [LoginGuard]}
 ];
 
 @NgModule({
@@ -92,40 +57,16 @@ const routes: Routes=  [
     IntroduccionComponent,
     FooterComponent,
     HeaderComponent,
-    Seccion1pregunta1Component,
-    Seccion1pregunta2Component,
-    Seccion1pregunta3Component,
-    Prediccion1seccion1Component,
-    Seccion2pregunta1Component,
-    Prediccion1seccion2Component,
-    Seccion2pregunta2Component,
-    Seccion2pregunta3Component,
-    Prediccion2seccion2Component,
     LoginComponent,
-    EvaluacionComponent,
-    Seccion2pregunta1pComponent,
-    Seccion2pregunta2pComponent,
-    Seccion2pregunta3pComponent,
-    Prediccion1seccion2pComponent,
-    Seccion1pregunta1pComponent,
-    Seccion1pregunta2pComponent,
-    Seccion1pregunta3pComponent,
-    Prediccion1seccion1pComponent,
-    PsicologoComponent,
-    UsuariosComponent,
     PaginaPsicologoComponent,
-
-    HistorialDepresionComponent,
-
-    PreguntasComponent,
-
-    RegistrarUsuarioComponent,
-
-
-
-
-
-
+    CrearClienteComponent,
+    CrearPreguntaComponent,
+    EncuestaComponent,
+    HistorialComponent,
+    PaginadorComponent,
+    DetalleHistorialComponent,
+    EstadisticaPacientesComponent,
+    EstadisticaHistoriasComponent
   ],
   imports: [
     AngularMultiSelectModule ,
@@ -135,10 +76,17 @@ const routes: Routes=  [
     RouterModule.forRoot(routes),
     FormsModule,
     HttpModule,
+    HttpClientModule,
     SharedModule,
-    BrowserAnimationsModule,MatDatepickerModule,MatMomentDateModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    NgxChartsModule
   ],
-  providers: [LoginGuard,NoLoginGuard, AdminService,{provide: LOCALE_ID, useValue: 'es' }],
+  providers: [
+    LoginGuard,NoLoginGuard,
+    Service,
+    {provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

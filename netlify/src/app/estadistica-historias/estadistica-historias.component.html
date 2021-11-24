@@ -1,0 +1,32 @@
+<div class="abrir-modal animacion fadeIn" *ngIf="modalsService.modal">
+  <div  class="modal" tabindex="-1" role="dialog" style="display:block;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{paciente.nombre}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cerrarModal()"></button>
+        </div>
+        <div class="modal-body">
+            <ngx-charts-line-chart
+              [view]="view"
+              [scheme]="colorScheme"
+              [legend]="legend"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxis]="xAxis"
+              [yAxis]="yAxis"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel"
+              [timeline]="timeline"
+              [results]="data"
+              [yScaleMin]="yScaleMin"
+              [legendPosition]="legendPosition"
+              [legendTitle]="legendTitle"
+              >
+            </ngx-charts-line-chart>
+        </div>
+        <button type="button" class="boton_pequeño" data-bs-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="topcorner" >
+                <a href="#" (click)="logout()"> Cerrar sesión</a>
+</div>
+<br>
+<div class="card border-success mb-3">
+  <div class="card-header">Preguntas</div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th style="text-align:center">Pregunta</th>
+        <th style="text-align:center">Area</th>
+        <th style="text-align:center">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pregunta of preguntas">
+        <td>{{pregunta.pregunta}}</td>
+        <td>{{pregunta.area}}</td>
+        <td>
+          <button style="width:100%; height:100%" type="button" name="button" (click) ="delete(pregunta)" *ngIf="!pregunta.prediccion" class="btn btn-danger btn-sm">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card-body text-primary">
+    <h5>Crear Pregunta</h5>
+  </div>
+  <div class="card-body">
+    <form #preguntaForm="ngForm">
+
+      <div class="form-group row" style="text-align:center">
+        <label for="pregunta" class="col-form-label col-sm-2">Pregunta</label>
+        <div class="col-sm-6">
+          <input [(ngModel)]="pregunta.pregunta" name="pregunta" type="text" class="form.control"  requerid>
+        </div>
+      </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="area" class="col-form-label col-sm-2">Area</label>
+        <div class="col-sm-6">
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="pregunta.area" name="area" requerid >
+            <mat-radio-button style="margin:5px" value='Ansiedad'>Ansiedad</mat-radio-button>
+            <mat-radio-button style="margin:5px" value='Depresion'>Depresion</mat-radio-button>
+          </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="form-group row" style="text-align:center">
+          <div class="col-sm-6">
+            <button class="boton_pequeño" role="button" (click)="create()" [disabled]="!preguntaForm.form.valid">Crear</button>
+            <button class="boton_pequeño btn-danger" role="button" [routerLink]="['/paginaPsicologo']">Atras</button>
+          </div>
+        </div>
+
+    </form>
+  </div>

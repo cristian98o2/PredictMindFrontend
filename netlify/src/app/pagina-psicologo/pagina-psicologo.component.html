@@ -1,45 +1,92 @@
+<app-estadistica-pacientes></app-estadistica-pacientes>
+<div class="my-2 text-left">
+  <button class="boton_pequeño" type="button" [routerLink] = "['../crearCliente']">Crear Paciente</button>
+  <button class="boton_pequeño" type="button" [routerLink] = "['../crearPregunta']">Preguntas</button>
+  <button class="boton_pequeño" type="button" (click)="abrirEstadistica()">Estadisticas</button>
+</div>
+<div class="topcorner" >
+                <a href="#" (click)="logout()"> Cerrar sesión</a>
+        </div>
 <br>
-<div class="card border-success  mb-3">
-  <div class="card-header">Usuarios</div>
+<div class="card border-success mb-3">
+  <div class="card-header">
+    Usuarios
+    <form #buscarForm="ngForm" (ngSubmit)= buscar(buscarForm)>
+      <div class="alineacion">
+        <input type="identidad" name="identificacion" id=identificacion placeholder="Buscar por Identificación" ngModel>
+        <button class="boton_buscar" type="submit">Buscar</button>
+      </div>
+    </form>
+  </div>
+
+
   <div class="card-body text-primary ">
 
 
     <h5 class="card-title">Listado de usuarios</h5>
 
-<table class="table table-bordered table-striped">
+<table class="psicologo table-bordered table-striped">
 
   <thead>
     <tr>
-      <th>Nombre completo</th>
-      <th>Identificación</th>
-      <th>Dirección</th>
-      <th>Fecha de nacimiento</th>
-      <th>Ocupación</th>
-      <th>Telefono</th>
-      <th>Sexo</th>
-      <th>Correo</th>
-      <th>Historial depresión</th>
-      <th>Historial ansiedad</th>
-
+      <th style="text-align:center">Nombre</th>
+      <th style="text-align:center">Identificación</th>
+      <th style="text-align:center">Fecha de Ingreso</th>
+      <th style="text-align:center">Telefono</th>
+      <th style="text-align:center">Edad</th>
+      <th style="text-align:center">Programa</th>
+      <th style="text-align:center">Semestre</th>
+      <th style="text-align:center">Correo</th>
+      <th style="text-align:center">Historial</th>
+      <th style="text-align:center">Editar Paciente</th>
+      <th style="text-align:center">Eliminar Paciente</th>
     </tr>
   </thead>
 
 <tbody>
   <tr *ngFor="let paciente of pacientes">
+    <ng-template [ngIf]="paciente.prioridad">
+      <td class="celda_roja">{{paciente.nombre}}</td>
+      <td class="celda_roja">{{paciente.identificacion}}</td>
+      <td class="celda_roja">{{paciente.fechaIngreso}}</td>
+      <td class="celda_roja">{{paciente.numero}}</td>
+      <td class="celda_roja">{{paciente.edad}}</td>
+      <td class="celda_roja">{{paciente.programa}}</td>
+      <td class="celda_roja">{{paciente.semestre}}</td>
+      <td class="celda_roja">{{paciente.email}}</td>
+    </ng-template>
+      <ng-template [ngIf]="paciente.diagnostico && !paciente.prioridad">
+        <td class="celda_azul">{{paciente.nombre}}</td>
+        <td class="celda_azul">{{paciente.identificacion}}</td>
+        <td class="celda_azul">{{paciente.fechaIngreso}}</td>
+        <td class="celda_azul">{{paciente.numero}}</td>
+        <td class="celda_azul">{{paciente.edad}}</td>
+        <td class="celda_azul">{{paciente.programa}}</td>
+        <td class="celda_azul">{{paciente.semestre}}</td>
+        <td class="celda_azul">{{paciente.email}}</td>
+      </ng-template>
+      <ng-template [ngIf]="!paciente.diagnostico && !paciente.prioridad">
+          <td>{{paciente.nombre}}</td>
+          <td>{{paciente.identificacion}}</td>
+          <td>{{paciente.fechaIngreso}}</td>
+          <td>{{paciente.numero}}</td>
+          <td>{{paciente.edad}}</td>
+          <td>{{paciente.programa}}</td>
+          <td>{{paciente.semestre}}</td>
+          <td>{{paciente.email}}</td>
+      </ng-template>
 
-      <td>{{paciente.nombre}}</td>
-      <td>{{paciente.idPaciente}}</td>
-      <td>{{paciente.direccion}}</td>
-      <td>{{paciente.fechaDeNacimiento}}</td>
-      <td>{{paciente.ocupacion}}</td>
-      <td>{{paciente.numeroCelular}}</td>
-      <td>{{paciente.sexo}}</td>
-      <td>email</td>
       <td>
-  <button type="button" name="historial" [routerLink]="['/historialDepresion',paciente.idPaciente]"
-  class="btn btn-primary">Depresión</button>
-</td>
-        </tr>
+        <button *ngIf="!paciente.prioridad" style="width:100%; height:100%" type="button" name="button" [routerLink]="['../historial', paciente.id]" class="btn btn-primary">Historial</button>
+        <button *ngIf="paciente.prioridad" style="width:100%; height:100%" type="button" name="button" [routerLink]="['../historial', paciente.id]" class="btn btn-danger">Historial</button>
+      </td>
+      <td>
+            <button style="width:100%; height:100%" type="button" name="button" [routerLink]="['../crearCliente', paciente.id]"  class="btn btn-primary btn-sm">Editar</button>
+      </td>
+      <td>
+        <button style="width:100%; height:100%" type="button" name="button" (click) ="delete(paciente)" class="btn btn-danger btn-sm">Eliminar</button>
+      </td>
+    </tr>
 </tbody>
 
 </table>

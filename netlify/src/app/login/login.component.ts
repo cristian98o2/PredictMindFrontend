@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
-import { AdminService } from './../service/AdminService';
-import { Paciente } from '../service/Paciente';
-import { Psicologo } from '../service/Psicologo';
+import { Service } from './../serviceSpring/service';
+import { Paciente } from '../serviceSpring/paciente';
+import { Psicologo } from '../serviceSpring/psicologo';
+
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,9 @@ import { Psicologo } from '../service/Psicologo';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private AdminService : AdminService) {
-   }
+  public psicologo: Psicologo = new Psicologo();
+
+  constructor(private router: Router,  private service: Service) {}
 
   ngOnInit() {
   }
@@ -25,28 +27,39 @@ export class LoginComponent implements OnInit {
 
   async login(form: NgForm){
     var con=0
-    await this.AdminService.getPacientes().then(pacientes => this.pacientes=pacientes)
-    for(var i=0; i<this.pacientes.length;i++){
-      if(form.value.password==this.pacientes[i].idPaciente && form.value.identificacion===this.pacientes[i].nombre){
-        localStorage.setItem('email',form.value.password)
-        con=1
-        this.router.navigate(['/introduccion']);
+    //await this.AdminService.getPacientes().then(pacientes => this.pacientes=pacientes)
+    this.service.getPacientes().subscribe(pacientes => {
 
-      }
-      else{
-        await this.AdminService.getPsicologos().then(psicologos => this.psicologos=psicologos)
-        for(var j=0; j<this.psicologos.length;j++){
-          if(form.value.password==this.psicologos[j].idPsicologo && form.value.identificacion===this.psicologos[j].nombre){
-            localStorage.setItem('email',form.value.password)
-            con=1
-            this.router.navigate(['/paginaPsicologo']);
+      this.pacientes = pacientes
 
+      for(var i=0; i<this.pacientes.length;i++){
+        if(form.value.password==this.pacientes[i].identificacion && form.value.identificacion===this.pacientes[i].email){
+          localStorage.setItem('email',''+this.pacientes[i].id)
+          con=1
+          this.router.navigate(['/introduccion']);
 
-          }
         }
       }
-    }
-    console.log(con)
+    })
+
+        this.service.getPsicologos().subscribe(psicologos => {
+          //console.log(psicologos[0]);
+          this.psicologos = psicologos
+          //console.log(this.psicologos[0])
+          for(var j=0; j<this.psicologos.length;j++){
+           if(form.value.password==this.psicologos[j].identificacion && form.value.identificacion===this.psicologos[j].email){
+             localStorage.setItem('email',''+this.psicologos[j].id)
+             con=1
+             this.router.navigate(['/paginaPsicologo']);
+
+
+           }
+         }})
+
+        // await this.AdminService.getPsicologos().then(psicologos => this.psicologos=psicologos)
+
+
+
     if(con==0){
       this.inicio=false
     }

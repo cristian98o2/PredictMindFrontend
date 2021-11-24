@@ -29,11 +29,13 @@
     "@covalent/highlight": "^2.1.1",
     "@covalent/http": "^2.1.1",
     "@covalent/markdown": "^2.1.1",
+    "@swimlane/ngx-charts": "^12.1.0",
     "angular2-multiselect-dropdown": "^4.6.10",
     "hammerjs": "^2.0.8",
     "headers": "^0.9.6",
     "moment": "^2.29.1",
     "rxjs": "^6.4.0",
+    "sweetalert2": "^11.1.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

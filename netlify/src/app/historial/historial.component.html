@@ -1,0 +1,55 @@
+<app-estadistica-historias *ngIf="paciente" [paciente]="paciente"></app-estadistica-historias>
+<div class="my-2 text-left">
+  <a href="javascript:history.back()"> Volver Atrás</a>
+</div>
+<div class="topcorner" >
+  <a href="#" (click)="logout()"> Cerrar sesión</a>
+</div>
+<br>
+<div class="card border-success  mb-3">
+  <div class="card-header">Historias </div>
+  <div class="alineacion">
+    <button class="boton_buscar" type="button" (click)="abrirEstadistica()">Estadisticas</button>
+  </div>
+  <div class="card-body text-primary ">
+
+    <h5 class="card-title">Listado de Historias</h5>
+
+<table class="table table-bordered table-striped">
+
+  <thead>
+    <tr>
+      <th style="text-align:center">Nombre</th>
+      <th style="text-align:center">Area</th>
+      <th style="text-align:center">Fecha</th>
+      <th style="text-align:center">Prediccion</th>
+      <th style="text-align:center">Detalle</th>
+      <th style="text-align:center">Eliminar Historia</th>
+    </tr>
+  </thead>
+
+<tbody>
+  <tr *ngFor="let historia of historias">
+      <td>{{historia.paciente.nombre}}</td>
+      <td>{{historia.area}}</td>
+      <td>{{historia.fecha}}</td>
+      <ng-template [ngIf]="historia.prediccion == 'Alto'">
+      <td class="celda_roja">{{historia.prediccion}}</td>
+      </ng-template>
+      <ng-template [ngIf]="!(historia.prediccion == 'Alto')">
+      <td>{{historia.prediccion}}</td>
+      </ng-template>
+      <td>
+        <button style="width:100%; height:100%" type="button" name="detalle" [routerLink]="['/detalleHist',historia.id]"
+        class="btn btn-primary">Detalle</button>
+      </td>
+      <td>
+        <button style="width:100%; height:100%" type="button" name="button" (click) ="delete(historia)" class="btn btn-danger btn-sm">Eliminar</button>
+      </td>
+    </tr>
+</tbody>
+
+</table>
+  <paginador-nav *ngIf="paginador" [paginador]="paginador"></paginador-nav>
+  </div>
+</div>

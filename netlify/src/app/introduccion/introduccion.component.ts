@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Service } from '../serviceSpring/service'
+import swal from 'sweetalert2'
 
 @Component({
   selector: 'app-introduccion',
@@ -8,12 +10,30 @@ import { Router } from '@angular/router';
 })
 export class IntroduccionComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public verificacion: boolean;
+
+  constructor(private service: Service, private router: Router,
+  private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
+
+  verificar(): void{
+    this.service.verificacion(parseInt(localStorage.getItem('email'))).subscribe(verificacion => {
+      this.verificacion = verificacion
+      if(this.verificacion){
+        this.router.navigate(['/encuesta'])
+      }
+      else {
+       swal.fire('Ya estuviste hoy', 'Para realizar una nueva encuesta vuelve mañana' , 'success')
+      }
+
+    })
+  }
+
   logout(){
     localStorage.removeItem('email');
     this.router.navigate(['']);
   }
+
 }

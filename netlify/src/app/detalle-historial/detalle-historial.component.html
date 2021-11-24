@@ -1,0 +1,36 @@
+<div class="my-2 text-left">
+  <a href="javascript:history.back()"> Volver Atrás</a>
+</div>
+<div class="topcorner" >
+  <a href="#" (click)="logout()"> Cerrar sesión</a>
+</div>
+<br>
+<div class="card border-success  mb-3">
+  <div class="card-header">Registros </div>
+  <div class="card-body text-primary ">
+
+
+    <h5 class="card-title">Detalle de Historia</h5>
+
+<table class="table table-bordered table-striped">
+
+  <thead>
+    <tr>
+      <th style="text-align:center">Pregunta</th>
+      <th style="text-align:center">Respuesta</th>
+      <th style="text-align:center">Fecha</th>
+    </tr>
+  </thead>
+
+<tbody>
+  <tr *ngFor="let pregunta of preguntas">
+      <td>{{pregunta.pregunta.pregunta}}</td>
+      <td>{{pregunta.respuesta}}</td>
+      <td>{{pregunta.historia.fecha}}</td>
+    </tr>
+</tbody>
+
+</table>
+
+  </div>
+</div>

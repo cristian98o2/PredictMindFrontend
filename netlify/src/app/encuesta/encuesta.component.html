@@ -1,0 +1,36 @@
+<div class="topcorner" >
+                <a href="#" (click)="logout()"> Cerrar sesión</a>
+</div>
+<br>
+<div class="card border-success mb-3">
+  <div class="card-header">Preguntas</div>
+  <div class="card-body">
+      <ul class="header">
+        <li class="col-md-12" *ngFor="let pregunta of preguntasA">
+          <div class="form-group row" style="text-align:center">
+            <label for="respuesta" class="col-form-label col-sm-6">{{pregunta.pregunta}}</label>
+            <div class="col-sm-6">
+                <button class="boton_pequeño" role="button" (click)="createA(pregunta,'Si')" name="uno">Si</button>
+                <button class="boton_pequeño" role="button" (click)="createA(pregunta,'No')" name="dos">No</button>
+              </div>
+            </div>
+        </li>
+        <li class="col-md-12" *ngFor="let pregunta of preguntasD">
+          <div class="form-group row" style="text-align:center">
+            <label for="respuesta" class="col-form-label col-sm-6">{{pregunta.pregunta}}</label>
+            <div class="col-sm-6">
+                <button class="boton_pequeño" role="button" (click)="createD(pregunta,'Si')" name="tres">Si</button>
+                <button class="boton_pequeño" role="button" (click)="createD(pregunta,'No')" name="cuatro">No</button>
+              </div>
+            </div>
+        </li>
+      </ul>
+      <br>
+      <div align="center">
+
+
+              <button class="boton_personalizado" (click)="actualizarHistoria()">Finalizar</button>
+
+      </div>
+  </div>
+</div>

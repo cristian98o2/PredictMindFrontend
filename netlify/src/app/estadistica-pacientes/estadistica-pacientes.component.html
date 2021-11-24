@@ -1,0 +1,28 @@
+<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+  <div  class="modal" tabindex="-1" role="dialog" style="display:block;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{nombre}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cerrarModal()"></button>
+        </div>
+        <div class="modal-body">
+          <ngx-charts-pie-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="data"
+            [gradient]="gradient"
+            [legend]="showLegend"
+            [legendPosition]="legendPosition"
+            [labels]="showLabels"
+            [doughnut]="isDoughnut"
+            [legendTitle]="legendTitle"
+            [trimLabels]="trimLabels"
+            >
+          </ngx-charts-pie-chart>
+        </div>
+        <button type="button" class="boton_pequeño" data-bs-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+<div class="topcorner" >
+                <a href="#" (click)="logout()"> Cerrar sesión</a>
+</div>
+<br>
+<div class="card border-success mb-3">
+  <div class="card-header">Pacientes</div>
+  <div class="card-body text-primary">
+    <h5>Crear Paciente</h5>
+  </div>
+
+  <div class="card-body" >
+
+    <form #pacienteForm="ngForm">
+      <div class="form-group row" style="text-align:center">
+        <label for="nombre" class="col-form-label col-sm-3">Nombre</label>
+        <div class="col-sm-6">
+          <input [(ngModel)]="paciente.nombre" name="nombre" type="text" class="form.control"  requerid #nombre="ngModel">
+        </div>
+      </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="identificacion" class="col-form-label col-sm-3">Identificacion</label>
+        <div class="col-sm-6">
+          <input type="text" class="form.control" [(ngModel)]="paciente.identificacion" name="identificacion" requerid #identificacion="ngModel">
+        </div>
+      </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="email" class="col-form-label col-sm-3">Correo</label>
+        <div class="col-sm-6">
+          <input type="text" class="form.control" [(ngModel)]="paciente.email" name="email" requerid #email="ngModel">
+        </div>
+      </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="fechaNacimiento" class="col-form-label col-sm-3">Fecha Nacimiento</label>
+        <div class="col-sm-6">
+          <!-- <input type="date" class="form-control" [(ngModel)]="cliente.createAt" name="createAt" required> -->
+          <input matInput [matDatepicker]="picker" class="form-control" [(ngModel)]="paciente.fechaNacimiento" name="fechaNacimiento" style="display:inline; width:125px;">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+      </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="fechaIngreso" class="col-form-label col-sm-3">Fecha Ingreso</label>
+        <div class="col-sm-6">
+          <!-- <input type="date" class="form-control" [(ngModel)]="cliente.createAt" name="createAt" required> -->
+          <input matInput [matDatepicker]="picker2" class="form-control" [(ngModel)]="paciente.fechaIngreso" name="fechaIngreso" style="display:inline; width:125px; " required>
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </div>
+      </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="programa" class="col-form-label col-sm-3">Programa Academico</label>
+        <div class="col-sm-6">
+          <input type="text" class="form.control"  [(ngModel)]="paciente.programa" name="programa" #programa="ngModel">
+          </div>
+        </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="facultad" class="col-form-label col-sm-3">Facultad</label>
+        <div class="col-sm-6">
+          <input type="text" class="form.control"  [(ngModel)]="paciente.facultad" name="facultad" #facultad="ngModel">
+          </div>
+        </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="semestre" class="col-form-label col-sm-3">Semestre</label>
+        <div class="col-sm-6">
+          <input type="text" class="form.control"  [(ngModel)]="paciente.semestre" name="semestre" #semestre="ngModel">
+          </div>
+        </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="ciudad" class="col-form-label col-sm-3">Ciudad</label>
+        <div class="col-sm-6">
+          <input type="text" class="form.control"  [(ngModel)]="paciente.ciudad" name="ciudad" #ciudad="ngModel">
+          </div>
+        </div>
+
+      <div class="form-group row" style="text-align:center">
+        <label for="direccion" class="col-form-label col-sm-3">Direccion</label>
+        <div class="col-sm-6">
+          <input type="text" class="form.control"  [(ngModel)]="paciente.direccion" name="direccion" #direccion="ngModel">
+          </div>
+        </div>
+
+        <div class="form-group row" style="text-align:center">
+          <label for="numero" class="col-form-label col-sm-3">Numero</label>
+          <div class="col-sm-6">
+            <input type="text" class="form.control" [(ngModel)]="paciente.numero" name="numero" #numero="ngModel">
+            </div>
+          </div>
+
+          <div class="form-group row" style="text-align:center">
+            <label for="descripcion" class="col-form-label col-sm-3">Descripcion</label>
+            <div class="col-sm-6">
+              <input type="text" class="form.control" [(ngModel)]="paciente.descripcion" name="descripcion" #descripcion="ngModel">
+              </div>
+            </div>
+
+            <div class="form-group row" style="text-align:center">
+              <label for="diagnostico" class="col-form-label col-sm-3">Diagnostico Previo</label>
+              <div class="col-sm-6">
+                <mat-radio-group  [(ngModel)]="paciente.diagnostico" name="diagnostico" requerid #diagnostico="ngModel">
+                  <mat-radio-button style="margin:5px" value=true>Si</mat-radio-button>
+                  <mat-radio-button style="margin:5px" value=false>No</mat-radio-button>
+                </mat-radio-group>
+                </div>
+              </div>
+
+            <div class="form-group row" style="text-align:center">
+              <label for="depresion" class="col-form-label col-sm-3">Depresion</label>
+              <div class="col-sm-6">
+                <mat-radio-group  [(ngModel)]="paciente.depresion" name="depresion" requerid #depresion="ngModel">
+                  <mat-radio-button style="margin:5px" value=true>Si</mat-radio-button>
+                  <mat-radio-button style="margin:5px" value=false>No</mat-radio-button>
+                </mat-radio-group>
+                </div>
+              </div>
+
+              <div class="form-group row" style="text-align:center">
+                <label for="ansiedad" class="col-form-label col-sm-3">Ansiedad</label>
+                <div class="col-sm-6">
+                  <mat-radio-group aria-label="Select an option" [(ngModel)]="paciente.ansiedad" name="ansiedad" requerid #ansiedad="ngModel">
+                    <mat-radio-button style="margin:5px"value=true>Si</mat-radio-button>
+                    <mat-radio-button style="margin:5px"value=false>No</mat-radio-button>
+                  </mat-radio-group>
+                  </div>
+                </div>
+
+            <div class="form-group row" style="text-align:center">
+              <div class="col-sm-6">
+                <button class="boton_pequeño" role="button" (click)="create()" *ngIf = "!paciente.id else elseBlock" [disabled]="!pacienteForm.form.valid">Crear</button>
+                <ng-template #elseBlock>
+                  <button class="boton_pequeño" role="button" (click)="update()" [disabled]="!pacienteForm.form.valid">Editar</button>
+                </ng-template>
+                <button class="boton_pequeño btn-danger" role="button" [routerLink]="['/paginaPsicologo']">Cancelar</button>
+              </div>
+            </div>
+    </form>
+
+  </div>
+</div>
